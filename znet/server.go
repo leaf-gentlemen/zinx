@@ -18,6 +18,15 @@ type Server struct {
 	Port int
 }
 
+func CallBackToClient(conn *net.TCPConn, buf []byte, cnt int) error {
+	fmt.Println("[Conn Handle] CallBackToClient...")
+	if _, err := conn.Write(buf[:cnt]); err != nil {
+		log.Printf("write back buf err %s \n", err)
+		return err
+	}
+	return nil
+}
+
 func (s *Server) Start() {
 	log.Printf("[Start] Server Listenner at IP :%s, Port %d, is starting\n", s.Addr, s.Port)
 
@@ -32,6 +41,7 @@ func (s *Server) Start() {
 		log.Printf("listen tcp error:%s\n", err)
 		return
 	}
+	var cid uint32 = 1
 	log.Println("start Zinx server succeed", s.Name, "server listening...")
 	for {
 		conn, err := listen.AcceptTCP()
@@ -40,20 +50,8 @@ func (s *Server) Start() {
 			continue
 		}
 
-		go func() {
-			for {
-				buf := make([]byte, 512)
-				cnt, err := conn.Read(buf)
-				if err != nil {
-					log.Printf("recv buf error :%s\n", err)
-					return
-				}
-
-				if _, err := conn.Write(buf[:cnt]); err != nil {
-					fmt.Printf("write back buf error :%s\n", err)
-				}
-			}
-		}()
+		delConn := NewConnection(conn, cid, CallBackToClient)
+		go delConn.Start()
 	}
 }
 

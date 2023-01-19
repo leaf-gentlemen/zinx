@@ -4,74 +4,47 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3861386-9012-49f7-a79f-4ba37ecd7b00" name="变更" comment="" />
+    <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Go File" />
-      </list>
-    </option>
-  </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Program Files/Go" />
+  <component name="GOROOT" url="file:///opt/homebrew/Cellar/go/1.19.5/libexec" />
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2JamxH06GSMBNHSoDSIWQFZt87v" />
+  <component name="ProjectId" id="2KX4qDTq7H15qO94a34WLoLX7w9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "configurable..is.expanded": "true",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "ask.go.tool.to.install.GoImportsTaskConsumer": "true",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/56563",
+    "last_opened_file_path": "/Users/yesheng",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.goide.configuration.GoLibrariesConfigurableProvider"
+    "settings.editor.selected.configurable": "watcher.settings"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\56563\Desktop\zinx\zinx" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\56563\Desktop\zinx" />
-      <recent name="C:\Users\56563\Desktop\zinx\zinx" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Go 构建.go build zinx/demo/client">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="zinx" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build zinx/demo" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="zinx" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="zinx/demo" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/demo/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build zinx/demo/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go 构建.client">
+    <configuration name="client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
@@ -80,19 +53,23 @@
       <filePath value="$PROJECT_DIR$/demo/client/main.go" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+    <configuration name="service" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
+      <kind value="PACKAGE" />
+      <package value="zinx/demo" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
+      <filePath value="$PROJECT_DIR$/demo/main.go" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go 构建.service" />
+      <item itemvalue="Go 构建.client" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 构建.go build zinx/demo/client" />
-        <item itemvalue="Go 构建.go build zinx/demo" />
+        <item itemvalue="Go 构建.client" />
+        <item itemvalue="Go 构建.service" />
       </list>
     </recent_temporary>
   </component>

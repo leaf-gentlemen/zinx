@@ -17,8 +17,8 @@ type IConnection interface {
 
 	//
 	// GetConn
-	//  @Description: 获取连接
-	//  @return *net.Conn
+	//  @Description:  获取链接
+	//  @return *net.TCPConn
 	//
 	GetConn() *net.TCPConn
 
