@@ -1,10 +1,27 @@
 package ziface
 
+// IServer
+// @Description: server 抽象层
 type IServer interface {
-	// 启动服务器
+	//
+	// Start
+	//  @Description: 启动服务器
+	//
 	Start()
-	// 停止服务器
+	//
+	// Stop
+	//  @Description: 停止服务器
+	//
 	Stop()
-	// 运行服务器
+	//
+	// Serve
+	//  @Description: 运行服务器
+	//
 	Serve()
+	//
+	// AddRouter
+	//  @Description: 添加路由
+	//  @param r
+	//
+	AddRouter(r IRouter)
 }

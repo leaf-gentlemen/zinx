@@ -8,23 +8,32 @@ import (
 )
 
 type Server struct {
-	// 服务器名称
+	//
+	//  Name
+	//  @Description: 服务器名称
+	//
 	Name string
-	// 服务器绑定的IP版本
-	IPVersion string
-	// IP 地址
-	Addr string
-	// 端口号
-	Port int
-}
 
-func CallBackToClient(conn *net.TCPConn, buf []byte, cnt int) error {
-	fmt.Println("[Conn Handle] CallBackToClient...")
-	if _, err := conn.Write(buf[:cnt]); err != nil {
-		log.Printf("write back buf err %s \n", err)
-		return err
-	}
-	return nil
+	//
+	//  IPVersion
+	//  @Description: 服务器绑定的IP版本
+	//
+	IPVersion string
+	//
+	//  Addr
+	//  @Description: 地址
+	//
+	Addr string
+	//
+	//  Port
+	//  @Description: 端口
+	//
+	Port int
+	//
+	//  Router
+	//  @Description: 路由
+	//
+	Router ziface.IRouter
 }
 
 func (s *Server) Start() {
@@ -50,7 +59,7 @@ func (s *Server) Start() {
 			continue
 		}
 
-		delConn := NewConnection(conn, cid, CallBackToClient)
+		delConn := NewConnection(conn, cid, s.Router)
 		go delConn.Start()
 	}
 }
@@ -64,6 +73,11 @@ func (s *Server) Serve() {
 
 	// 阻塞
 	select {}
+}
+
+func (s *Server) AddRouter(r ziface.IRouter) {
+	// TODO 添加多个路由
+	s.Router = r
 }
 
 func NewServe(name string) ziface.IServer {

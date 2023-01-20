@@ -14,17 +14,17 @@ type Connection struct {
 	// isClose 是否关闭
 	isClose bool
 	// handle 绑定的业务方法
-	handle ziface.HandleFunc
+	handle ziface.IRouter
 	// ExitChan 通知当前连接已退出
 	ExitChan chan bool
 }
 
-func NewConnection(conn *net.TCPConn, connID uint32, handleFunc ziface.HandleFunc) *Connection {
+func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Connection {
 	return &Connection{
 		Conn:     conn,
 		ConnID:   connID,
 		isClose:  false,
-		handle:   handleFunc,
+		handle:   handle,
 		ExitChan: make(chan bool),
 	}
 }
@@ -80,8 +80,16 @@ func (c *Connection) StartReader() {
 			continue
 		}
 
-		if err := c.handle(c.GetConn(), buf, cnt); err != nil {
-			log.Printf("handel function fail err:%s\n", err)
+		r := &Request{
+			conn: c,
+			data: buf,
+			cnt:  cnt,
 		}
+
+		go func(r ziface.IRequest) {
+			c.handle.PerHandle(r)
+			c.handle.Handle(r)
+			c.handle.PostHandle(r)
+		}(r)
 	}
 }
