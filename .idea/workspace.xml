@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/client/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/iserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iserver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Api File" />
         <option value="Go File" />
       </list>
     </option>
@@ -32,6 +34,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="v0.4" />
+                    <option name="lastUsedInstant" value="1674191834" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feat-v0.3" />
                     <option name="lastUsedInstant" value="1674177123" />
@@ -59,7 +65,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultApiTemplateProperty": "Api File",
     "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -67,15 +75,21 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
+    "ask.go.tool.to.install.GoGolangCILintTaskConsumer": "true",
     "ask.go.tool.to.install.GoImportsTaskConsumer": "true",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/Users/yesheng",
+    "last_opened_file_path": "/Users/yesheng/zinx",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "settings.editor.selected.configurable": "watcher.settings"
   }
 }]]></component>
-  <component name="RunManager" selected="Go 构建.client">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Makefile 目标.pre-commit">
     <configuration name="client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
@@ -94,14 +108,36 @@
       <filePath value="$PROJECT_DIR$/demo/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="zinx/utils 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="zinx" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="zinx/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestName\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pre-commit" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="pre-commit" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go 构建.service" />
       <item itemvalue="Go 构建.client" />
+      <item itemvalue="Go 测试.zinx/utils 中的 TestName" />
+      <item itemvalue="Makefile 目标.pre-commit" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 构建.client" />
+        <item itemvalue="Makefile 目标.pre-commit" />
         <item itemvalue="Go 构建.service" />
+        <item itemvalue="Go 测试.zinx/utils 中的 TestName" />
+        <item itemvalue="Go 构建.client" />
       </list>
     </recent_temporary>
   </component>

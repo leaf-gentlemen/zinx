@@ -62,7 +62,7 @@ func (c *Connection) GetRemoteAddr() net.Addr {
 }
 
 func (c *Connection) Send(buf []byte) error {
-	//TODO implement me
+	// TODO implement me
 	panic("implement me")
 }
 
@@ -71,9 +71,9 @@ func (c *Connection) StartReader() {
 	defer log.Printf("connID:%d, reader is exit, remote addr is %s\n",
 		c.GetConnID(), c.GetRemoteAddr().String())
 	defer c.Stop()
-
+	bufLen := 512
 	for {
-		buf := make([]byte, 512)
+		buf := make([]byte, bufLen)
 		cnt, err := c.GetConn().Read(buf)
 		if err != nil {
 			log.Printf("recv fail err:%s\n", err)

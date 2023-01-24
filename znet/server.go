@@ -2,9 +2,12 @@ package znet
 
 import (
 	"fmt"
-	"log"
 	"net"
+	"zinx/utils"
 	"zinx/ziface"
+
+	"github.com/pkg/errors"
+	"go.uber.org/zap"
 )
 
 type Server struct {
@@ -37,25 +40,25 @@ type Server struct {
 }
 
 func (s *Server) Start() {
-	log.Printf("[Start] Server Listenner at IP :%s, Port %d, is starting\n", s.Addr, s.Port)
-
+	logger := utils.Logger
+	logger.Debug("[Start] Server Listening...", zap.String("IP", s.Addr), zap.Int("port", s.Port))
 	addr, err := net.ResolveTCPAddr(s.IPVersion, fmt.Sprintf("%s:%d", s.Addr, s.Port))
 	if err != nil {
-		log.Printf("reslove tcp addr error:%s\n", err)
+		logger.Error("resolve tcp addr", zap.Error(errors.WithStack(err)))
 		return
 	}
 
 	listen, err := net.ListenTCP(s.IPVersion, addr)
 	if err != nil {
-		log.Printf("listen tcp error:%s\n", err)
+		logger.Error("listen tcp", zap.Error(errors.WithStack(err)))
 		return
 	}
 	var cid uint32 = 1
-	log.Println("start Zinx server succeed", s.Name, "server listening...")
+	logger.Debug(fmt.Sprintf("start Zinx server succeed  %s server listening...", s.Name))
 	for {
 		conn, err := listen.AcceptTCP()
 		if err != nil {
-			log.Printf("accpetTCP error:%s", err)
+			logger.Error("acceptTCP", zap.Error(errors.WithStack(err)))
 			continue
 		}
 
@@ -65,7 +68,7 @@ func (s *Server) Start() {
 }
 
 func (s *Server) Stop() {
-	//TODO 将一些服务器资源停止，
+	// TODO 将一些服务器资源停止，
 }
 
 func (s *Server) Serve() {
@@ -84,8 +87,8 @@ func NewServe(name string) ziface.IServer {
 	s := &Server{
 		Name:      name,
 		IPVersion: "tcp4",
-		Addr:      "0.0.0.0",
-		Port:      8081,
+		Addr:      utils.Interface().Host,
+		Port:      utils.Interface().Port,
 	}
 	return s
 }

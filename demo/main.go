@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"zinx/utils"
 	"zinx/ziface"
 	"zinx/znet"
 )
@@ -19,7 +20,8 @@ func (r *Router) Handle(req ziface.IRequest) {
 }
 
 func main() {
-	s := znet.NewServe("[zinx v0.3]")
+	utils.InitConf("/Users/yesheng/zinx/demo/config")
+	s := znet.NewServe(utils.Interface().Name)
 
 	r := &Router{}
 	s.AddRouter(r)
