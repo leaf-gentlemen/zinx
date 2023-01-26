@@ -78,9 +78,8 @@ func (s *Server) Serve() {
 	select {}
 }
 
-func (s *Server) AddRouter(r ziface.IRouter) {
-	// TODO 添加多个路由
-	s.Router = r
+func (s *Server) AddRouter(msgID uint32, r ziface.IHandler) error {
+	return s.Router.AddRoute(msgID, r)
 }
 
 func NewServe(name string) ziface.IServer {
@@ -89,6 +88,7 @@ func NewServe(name string) ziface.IServer {
 		IPVersion: "tcp4",
 		Addr:      utils.Interface().Host,
 		Port:      utils.Interface().Port,
+		Router:    NewRouter(),
 	}
 	return s
 }

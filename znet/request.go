@@ -15,3 +15,7 @@ func (r *Request) GetConnection() ziface.IConnection {
 func (r *Request) GetData() []byte {
 	return r.msg.GetData()
 }
+
+func (r *Request) GetMessage() ziface.IMessage {
+	return r.msg
+}

@@ -9,11 +9,16 @@ type IRequest interface {
 	//  @return IConnection
 	//
 	GetConnection() IConnection
-
 	//
 	// GetData
 	//  @Description: 获取数据
 	//  @return []byte
 	//
 	GetData() []byte
+	//
+	// GetMessage
+	//  @Description: 获取 message 对象
+	//  @return IMessage
+	//
+	GetMessage() IMessage
 }

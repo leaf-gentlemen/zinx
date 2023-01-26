@@ -6,12 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/client/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/testing/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/testing/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/testing/service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/ihandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/ihandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/irequest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/irouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/irouter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/iserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iserver.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/znet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/znet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +41,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="v0.6" />
+                    <option name="lastUsedInstant" value="1674707458" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="v0.5" />
                     <option name="lastUsedInstant" value="1674543404" />
@@ -93,13 +103,16 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/testing/service" />
+    </key>
   </component>
   <component name="RunManager" selected="Go 构建.client">
     <configuration name="client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="zinx/demo/client" />
+      <package value="zinx/testing/client" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/demo/client/main.go" />
       <method v="2" />
@@ -108,7 +121,7 @@
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="zinx/demo" />
+      <package value="zinx/testing/service" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/demo/main.go" />
       <method v="2" />

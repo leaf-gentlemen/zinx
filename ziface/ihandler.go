@@ -1,18 +1,24 @@
 package ziface
 
+// IHandle
+// @Description: 业务处理方法
 type IHandler interface {
 	//
-	// DoMessage
-	//  @Description: 执行对应的路由处理逻辑
-	//  @param msgID
-	//  @param r
+	// PerHandle
+	//  @Description: 处理 conn 业务之前的钩子方法代Hook
+	//  @param request
 	//
-	DoMessage(msgID uint32, r IRequest) error
+	PerHandle(request IRequest)
 	//
-	// AddRoute
-	//  @Description: 添加路由
-	//  @param msgID
-	//  @param r
+	// Handle
+	//  @Description: 处理 conn 业务的主方法 Hook
+	//  @param request
 	//
-	AddRoute(msgID uint32, r IRouter) error
+	Handle(request IRequest)
+	//
+	// PostHandle
+	//  @Description: 处理 conn 业务之后的钩子方法 Hook
+	//  @param request
+	//
+	PostHandle(request IRequest)
 }

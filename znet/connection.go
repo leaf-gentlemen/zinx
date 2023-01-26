@@ -125,9 +125,9 @@ func (c *Connection) StartReader() {
 		}
 
 		go func(r ziface.IRequest) {
-			c.handle.PerHandle(r)
-			c.handle.Handle(r)
-			c.handle.PostHandle(r)
+			if err := c.handle.DoMessage(r); err != nil {
+				logger.Error("do message fail", zap.Error(err))
+			}
 		}(r)
 	}
 }

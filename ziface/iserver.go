@@ -21,7 +21,9 @@ type IServer interface {
 	//
 	// AddRouter
 	//  @Description: 添加路由
-	//  @param r
+	//  @param uint32
+	//  @param IRouter
+	//  @return error
 	//
-	AddRouter(r IRouter)
+	AddRouter(uint32, IHandler) error
 }

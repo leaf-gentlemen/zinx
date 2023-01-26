@@ -1,24 +1,17 @@
 package ziface
 
-// IRouter
-// @Description: 路由抽象层
 type IRouter interface {
 	//
-	// PerHandle
-	//  @Description: 处理 conn 业务之前的钩子方法代Hook
-	//  @param request
+	// DoMessage
+	//  @Description: 执行对应的路由处理逻辑
+	//  @param r
 	//
-	PerHandle(request IRequest)
+	DoMessage(r IRequest) error
 	//
-	// Handle
-	//  @Description: 处理 conn 业务的主方法 Hook
-	//  @param request
+	// AddRoute
+	//  @Description: 添加路由
+	//  @param msgID
+	//  @param r
 	//
-	Handle(request IRequest)
-	//
-	// PostHandle
-	//  @Description: 处理 conn 业务之后的钩子方法 Hook
-	//  @param request
-	//
-	PostHandle(request IRequest)
+	AddRoute(msgID uint32, r IHandler) error
 }
