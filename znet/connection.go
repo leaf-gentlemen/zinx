@@ -1,9 +1,15 @@
 package znet
 
 import (
+	"io"
 	"log"
 	"net"
+	"zinx/utils"
 	"zinx/ziface"
+
+	"github.com/pkg/errors"
+
+	"go.uber.org/zap"
 )
 
 type Connection struct {
@@ -61,29 +67,61 @@ func (c *Connection) GetRemoteAddr() net.Addr {
 	return c.Conn.RemoteAddr()
 }
 
-func (c *Connection) Send(buf []byte) error {
-	// TODO implement me
-	panic("implement me")
+func (c *Connection) Send(msgID uint32, buf []byte) error {
+	if c.isClose {
+		return errors.WithStack(errors.New("conn is clone"))
+	}
+
+	msg := NewMessage(msgID, buf)
+	dp := NewDataPack()
+	bufData, err := dp.Pack(msg)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.GetConn().Write(bufData)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *Connection) StartReader() {
+	logger := utils.Logger
 	log.Printf("reader goruntine is running...\n")
 	defer log.Printf("connID:%d, reader is exit, remote addr is %s\n",
 		c.GetConnID(), c.GetRemoteAddr().String())
 	defer c.Stop()
-	bufLen := 512
+
 	for {
-		buf := make([]byte, bufLen)
-		cnt, err := c.GetConn().Read(buf)
+		dp := NewDataPack()
+		head := make([]byte, dp.GetHeadLen())
+		cnt, err := io.ReadFull(c.GetConn(), head)
+		if err != nil || cnt != dp.GetHeadLen() {
+			if err.Error() == "EOF" {
+				logger.Debug("client msg EOF")
+				break
+			}
+			logger.Error("reader head fail.", zap.Error(err))
+			continue
+		}
+
+		pack, err := dp.UnPack(head)
 		if err != nil {
-			log.Printf("recv fail err:%s\n", err)
+			logger.Error("unpack  fail.", zap.Error(err))
+			continue
+		}
+
+		msgData := make([]byte, pack.GetMsgLen())
+		cnt, err = io.ReadFull(c.GetConn(), msgData)
+		if err != nil || cnt != int(pack.GetMsgLen()) {
+			logger.Error("reader data fail.", zap.Error(err), zap.Int("cnt", cnt))
 			continue
 		}
 
 		r := &Request{
 			conn: c,
-			data: buf,
-			cnt:  cnt,
+			msg:  NewMessage(pack.GetMsgID(), msgData),
 		}
 
 		go func(r ziface.IRequest) {

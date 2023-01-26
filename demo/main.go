@@ -1,10 +1,11 @@
 package main
 
 import (
-	"log"
 	"zinx/utils"
 	"zinx/ziface"
 	"zinx/znet"
+
+	"go.uber.org/zap"
 )
 
 type Router struct {
@@ -12,10 +13,11 @@ type Router struct {
 }
 
 func (r *Router) Handle(req ziface.IRequest) {
-	log.Printf("client msg %s \n", req.GetData())
+	logger := utils.Logger
+	logger.Debug("client msg", zap.Any("data", string(req.GetData())))
 	conn := req.GetConnection()
-	if _, err := conn.GetConn().Write(req.GetData()); err != nil {
-		log.Printf(" write client fail err:%s/n", err)
+	if err := conn.Send(1, []byte("ping...")); err != nil {
+		logger.Error("send message client fail", zap.Error(err))
 	}
 }
 

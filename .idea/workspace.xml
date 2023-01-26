@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/client/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ziface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iconnection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/znet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/request.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +35,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="v0.5" />
+                    <option name="lastUsedInstant" value="1674543404" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="v0.4" />
                     <option name="lastUsedInstant" value="1674191834" />
@@ -63,33 +68,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultApiTemplateProperty": "Api File",
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ask.go.tool.to.install.GoGolangCILintTaskConsumer": "true",
-    "ask.go.tool.to.install.GoImportsTaskConsumer": "true",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/Users/yesheng/zinx",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "watcher.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultApiTemplateProperty&quot;: &quot;Api File&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ask.go.tool.to.install.GoGolangCILintTaskConsumer&quot;: &quot;true&quot;,
+    &quot;ask.go.tool.to.install.GoImportsTaskConsumer&quot;: &quot;true&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yesheng/zinx&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile 目标.pre-commit">
+  <component name="RunManager" selected="Go 构建.client">
     <configuration name="client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="zinx" />
       <working_directory value="$PROJECT_DIR$" />
@@ -120,6 +125,18 @@
       <pattern value="^\QTestName\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="zinx/znet 中的 TestDataPack" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="zinx" />
+      <working_directory value="$PROJECT_DIR$/znet" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="zinx/znet" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestDataPack\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="pre-commit" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/Makefile" target="pre-commit" workingDirectory="" arguments="">
         <envs />
@@ -129,15 +146,17 @@
     <list>
       <item itemvalue="Go 构建.service" />
       <item itemvalue="Go 构建.client" />
+      <item itemvalue="Go 测试.zinx/znet 中的 TestDataPack" />
       <item itemvalue="Go 测试.zinx/utils 中的 TestName" />
       <item itemvalue="Makefile 目标.pre-commit" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Makefile 目标.pre-commit" />
-        <item itemvalue="Go 构建.service" />
-        <item itemvalue="Go 测试.zinx/utils 中的 TestName" />
         <item itemvalue="Go 构建.client" />
+        <item itemvalue="Go 构建.service" />
+        <item itemvalue="Go 测试.zinx/znet 中的 TestDataPack" />
+        <item itemvalue="Makefile 目标.pre-commit" />
+        <item itemvalue="Go 测试.zinx/utils 中的 TestName" />
       </list>
     </recent_temporary>
   </component>

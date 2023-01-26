@@ -42,7 +42,7 @@ type IConnection interface {
 	//  @param buf
 	//  @return error
 	//
-	Send(buf []byte) error
+	Send(uint32, []byte) error
 }
 
 type HandleFunc func(*net.TCPConn, []byte, int) error

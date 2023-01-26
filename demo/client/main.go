@@ -2,32 +2,57 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net"
 	"time"
+	"zinx/utils"
+	"zinx/znet"
+
+	"go.uber.org/zap"
 )
 
 func main() {
-	conn, err := net.Dial("tcp4", "127.0.0.1:8081")
+	conn, err := net.Dial("tcp4", "127.0.0.1:8082")
 	if err != nil {
 		fmt.Printf("dial connect error: %s \n", err)
 		return
 	}
-
+	logger := utils.Logger
+	dp := znet.NewDataPack()
 	for {
-		_, err := conn.Write([]byte("hello server"))
+		msg := znet.NewMessage(0, []byte("hello server"))
+		buf, err := dp.Pack(msg)
 		if err != nil {
-			fmt.Printf("write buf error:%s", err)
-		}
-		bufLen := 512
-		buf := make([]byte, bufLen)
-		cnt, err := conn.Read(buf)
-		if err != nil {
-			fmt.Printf("read buf error :%s", err)
+			logger.Error("msg pack fail", zap.Error(err))
 			return
 		}
 
-		fmt.Printf("read buf content :%s, cnt: %d \n", buf, cnt)
+		if _, err := conn.Write(buf); err != nil {
+			logger.Error("msg write fail", zap.Error(err))
+		}
 
+		buf = make([]byte, dp.GetHeadLen())
+		cnt, err := io.ReadFull(conn, buf)
+		if err != nil {
+			fmt.Printf("read head buf error :%s", err)
+			return
+		}
+
+		head, err := dp.UnPack(buf)
+		if err != nil {
+			logger.Error("msg unpack fail", zap.Error(err))
+			return
+		}
+
+		msgData := make([]byte, head.GetMsgLen())
+		cnt, err = io.ReadFull(conn, msgData)
+		if err != nil {
+			logger.Error("msg data reader fail", zap.Error(err))
+			return
+		}
+
+		head.SetData(msgData)
+		fmt.Printf("read msgID  :%d, cnt: %d  data:%s \n", head.GetMsgID(), cnt, head.GetData())
 		time.Sleep(time.Second)
 	}
 }
