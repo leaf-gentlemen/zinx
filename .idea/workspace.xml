@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/testing/client/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/testing/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/testing/service/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/ihandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/ihandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/irequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/irouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/irouter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ziface/iserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/ziface/iserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/testing/service/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/znet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +24,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///opt/homebrew/Cellar/go/1.19.5/libexec" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Program Files/Go" />
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -42,20 +34,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="v0.6" />
-                    <option name="lastUsedInstant" value="1674707458" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="v0.5" />
-                    <option name="lastUsedInstant" value="1674543404" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="v0.4" />
-                    <option name="lastUsedInstant" value="1674191834" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feat-v0.3" />
-                    <option name="lastUsedInstant" value="1674177123" />
+                    <option name="branchName" value="v0.7" />
+                    <option name="lastUsedInstant" value="1674812071" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -78,27 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultApiTemplateProperty&quot;: &quot;Api File&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ask.go.tool.to.install.GoGolangCILintTaskConsumer&quot;: &quot;true&quot;,
-    &quot;ask.go.tool.to.install.GoImportsTaskConsumer&quot;: &quot;true&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/yesheng/zinx&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultApiTemplateProperty": "Api File",
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ask.go.tool.to.install.GoGolangCILintTaskConsumer": "true",
+    "ask.go.tool.to.install.GoImportsTaskConsumer": "true",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/56563",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "settings.editor.selected.configurable": "go.sdk"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />

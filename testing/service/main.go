@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	utils.InitConf("/Users/yesheng/zinx/testing/config")
+	utils.InitConf("testing/config")
 	s := znet.NewServe(utils.Interface().Name)
 	s.AddRouter(0, &control.Login{})
 	s.AddRouter(1, &control.User{})

@@ -1,6 +1,7 @@
 package znet
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -22,7 +23,8 @@ type Connection struct {
 	// handle 绑定的业务方法
 	handle ziface.IRouter
 	// ExitChan 通知当前连接已退出
-	ExitChan chan bool
+	exitChan chan bool
+	msgChan  chan []byte
 }
 
 func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Connection {
@@ -31,19 +33,22 @@ func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Con
 		ConnID:   connID,
 		isClose:  false,
 		handle:   handle,
-		ExitChan: make(chan bool),
+		exitChan: make(chan bool),
+		msgChan:  make(chan []byte),
 	}
 }
 
 func (c *Connection) Start() {
-	log.Printf("Conn Start()... ConnID:%d \n", c.GetConnID())
+	logger := utils.Logger
+	logger.Debug(fmt.Sprintf("Conn start()... ConnID = %d \n", c.GetConnID()))
 	// 启动读数据业务
-	c.StartReader()
-	// TODO 启动写的业务
+	go c.StartReader()
+	go c.StartWrite()
 }
 
 func (c *Connection) Stop() {
-	log.Printf("Conn stop()... ConnID = %d \n", c.GetConnID())
+	logger := utils.Logger
+	logger.Debug(fmt.Sprintf("Conn stop()... ConnID = %d \n", c.GetConnID()))
 	if c.isClose {
 		return
 	}
@@ -52,7 +57,9 @@ func (c *Connection) Stop() {
 	if err := c.Conn.Close(); err != nil {
 		log.Printf("err:%s\n", err)
 	}
-	close(c.ExitChan)
+	c.exitChan <- true
+	close(c.exitChan)
+	close(c.msgChan)
 }
 
 func (c *Connection) GetConn() *net.TCPConn {
@@ -78,19 +85,15 @@ func (c *Connection) Send(msgID uint32, buf []byte) error {
 	if err != nil {
 		return err
 	}
-
-	_, err = c.GetConn().Write(bufData)
-	if err != nil {
-		return err
-	}
+	c.msgChan <- bufData
 	return nil
 }
 
 func (c *Connection) StartReader() {
 	logger := utils.Logger
-	log.Printf("reader goruntine is running...\n")
-	defer log.Printf("connID:%d, reader is exit, remote addr is %s\n",
-		c.GetConnID(), c.GetRemoteAddr().String())
+	logger.Debug("reader goroutine is running...")
+	defer logger.Debug(fmt.Sprintf("connID:%d, reader is exit, remote addr is %s\n",
+		c.GetConnID(), c.GetRemoteAddr().String()))
 	defer c.Stop()
 
 	for {
@@ -98,8 +101,8 @@ func (c *Connection) StartReader() {
 		head := make([]byte, dp.GetHeadLen())
 		cnt, err := io.ReadFull(c.GetConn(), head)
 		if err != nil || cnt != dp.GetHeadLen() {
-			if err.Error() == "EOF" {
-				logger.Debug("client msg EOF")
+			if _, ok := err.(net.Error); ok || err == io.EOF {
+				logger.Warn("client close", zap.String("remote", c.GetConn().RemoteAddr().String()))
 				break
 			}
 			logger.Error("reader head fail.", zap.Error(err))
@@ -129,5 +132,25 @@ func (c *Connection) StartReader() {
 				logger.Error("do message fail", zap.Error(err))
 			}
 		}(r)
+	}
+}
+
+func (c *Connection) StartWrite() {
+	logger := utils.Logger
+	logger.Debug("write goroutine running...")
+	defer logger.Debug(fmt.Sprintf("connID:%d, write is exit, remote addr is %s\n",
+		c.GetConnID(), c.GetRemoteAddr().String()))
+
+	for {
+		select {
+		case msg := <-c.msgChan:
+			_, err := c.GetConn().Write(msg)
+			if err != nil {
+				logger.Error("write client msg fail", zap.Error(err))
+				break
+			}
+		case <-c.exitChan:
+			return
+		}
 	}
 }
