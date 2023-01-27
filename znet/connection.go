@@ -21,7 +21,7 @@ type Connection struct {
 	// isClose 是否关闭
 	isClose bool
 	// handle 绑定的业务方法
-	handle ziface.IRouter
+	router ziface.IRouter
 	// ExitChan 通知当前连接已退出
 	exitChan chan bool
 	msgChan  chan []byte
@@ -32,7 +32,7 @@ func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Con
 		Conn:     conn,
 		ConnID:   connID,
 		isClose:  false,
-		handle:   handle,
+		router:   handle,
 		exitChan: make(chan bool),
 		msgChan:  make(chan []byte),
 	}
@@ -128,9 +128,7 @@ func (c *Connection) StartReader() {
 		}
 
 		go func(r ziface.IRequest) {
-			if err := c.handle.DoMessage(r); err != nil {
-				logger.Error("do message fail", zap.Error(err))
-			}
+			c.router.SendMsgToTaskQueue(r)
 		}(r)
 	}
 }

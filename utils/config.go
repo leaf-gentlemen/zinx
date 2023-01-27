@@ -23,7 +23,8 @@ type Configure struct {
 	MaxConn        int            // 最大连接数
 	MaxPackageSize int            // 最大数据包长度
 	Version        string         // zinx 版本
-
+	WorkerPoolSize uint32         // 最新任务池数量
+	WorkerMsgLen   uint32         // 最大任务池数量
 }
 
 func InitConf(path string) {
@@ -34,6 +35,8 @@ func InitConf(path string) {
 		Host:           "0.0.0.0",
 		MaxConn:        1000,
 		MaxPackageSize: 4096,
+		WorkerPoolSize: 10,
+		WorkerMsgLen:   20,
 	}
 	reload(conf, path)
 }

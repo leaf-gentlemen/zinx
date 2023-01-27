@@ -55,6 +55,7 @@ func (s *Server) Start() {
 	}
 	var cid uint32 = 1
 	logger.Debug(fmt.Sprintf("start Zinx server succeed  %s server listening...", s.Name))
+	s.Router.StartWorkerPool()
 	for {
 		conn, err := listen.AcceptTCP()
 		if err != nil {
