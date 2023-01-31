@@ -15,11 +15,13 @@ func DoConnectionBegin(conn ziface.IConnection) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	conn.SetProperty("name", "test")
 }
 
 // 连接断开的时候执行
 func DoConnectionLost(conn ziface.IConnection) {
-	fmt.Println("DoConneciotnLost is Called ... ")
+	name, _ := conn.GetProperty("name")
+	fmt.Printf("DoConneciotnLost is Called ... name:%s \n", name)
 }
 
 func main() {

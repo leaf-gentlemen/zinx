@@ -42,7 +42,6 @@ type IConnection interface {
 	//  @return error
 	//
 	SendMsg(uint32, []byte) error
-
 	//
 	// SendBuffMsg
 	//  @Description: 添加带缓冲发送消息接口
@@ -51,6 +50,27 @@ type IConnection interface {
 	//  @return error
 	//
 	SendBuffMsg(uint32, []byte) error
+	//
+	// GetProperty
+	//  @Description: 设置属性
+	//  @param key
+	//  @return interface{}
+	//  @return bool
+	//
+	GetProperty(key string) (interface{}, bool)
+	//
+	// SetProperty
+	//  @Description: 设置属性
+	//  @param key
+	//  @param value
+	//
+	SetProperty(key string, value interface{})
+	//
+	// RemoveProperty
+	//  @Description: 移除属性
+	//  @param key
+	//
+	RemoveProperty(key string)
 }
 
 type HandleFunc func(*net.TCPConn, []byte, int) error

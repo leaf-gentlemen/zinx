@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"sync"
 	"zinx/utils"
 	"zinx/ziface"
 
@@ -29,18 +30,24 @@ type Connection struct {
 	msgChan chan []byte
 	// msgBuffChan 带缓存写业务消息管道
 	msgBuffChan chan []byte
+	// property 连接属性
+	property map[string]interface{}
+	// propertyLock 链接属性
+	propertyLock sync.RWMutex
 }
 
 func NewConnection(srv ziface.IServer, conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Connection {
 	c := &Connection{
-		conn:        conn,
-		connID:      connID,
-		isClose:     false,
-		router:      handle,
-		exitChan:    make(chan bool),
-		msgChan:     make(chan []byte),
-		srv:         srv,
-		msgBuffChan: make(chan []byte, utils.Interface().MsgBuffChanLen),
+		conn:         conn,
+		connID:       connID,
+		isClose:      false,
+		router:       handle,
+		exitChan:     make(chan bool),
+		msgChan:      make(chan []byte),
+		srv:          srv,
+		msgBuffChan:  make(chan []byte, utils.Interface().MsgBuffChanLen),
+		property:     make(map[string]interface{}),
+		propertyLock: sync.RWMutex{},
 	}
 	c.srv.GetConnManager().Add(c)
 	return c
@@ -188,4 +195,23 @@ func (c *Connection) SendBuffMsg(msgID uint32, buf []byte) error {
 	}
 	c.msgBuffChan <- bufData
 	return nil
+}
+
+func (c *Connection) GetProperty(key string) (interface{}, bool) {
+	defer c.propertyLock.RUnlock()
+	c.propertyLock.RLock()
+	value, ok := c.property[key]
+	return value, ok
+}
+
+func (c *Connection) SetProperty(key string, value interface{}) {
+	defer c.propertyLock.Unlock()
+	c.propertyLock.Lock()
+	c.property[key] = value
+}
+
+func (c *Connection) RemoveProperty(key string) {
+	defer c.propertyLock.RUnlock()
+	c.propertyLock.Lock()
+	delete(c.property, key)
 }
