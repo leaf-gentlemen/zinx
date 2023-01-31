@@ -44,7 +44,7 @@ func TestDataPack(t *testing.T) {
 					}
 
 					data := make([]byte, msg.GetMsgLen())
-					cnt, err = io.ReadFull(conn, data)
+					cnt, _ = io.ReadFull(conn, data)
 					if cnt != int(msg.GetMsgLen()) {
 						log.Printf("data len fail , cnt:%d \n", cnt)
 						break
@@ -64,10 +64,10 @@ func TestDataPack(t *testing.T) {
 		return
 	}
 
-	//创建一个封包对象 dp
+	// 创建一个封包对象 dp
 	dp := NewDataPack()
 
-	//封装一个msg1包
+	// 封装一个msg1包
 	msg1 := &Message{
 		ID:   0,
 		Len:  5,
@@ -91,12 +91,12 @@ func TestDataPack(t *testing.T) {
 		return
 	}
 
-	//将sendData1，和 sendData2 拼接一起，组成粘包
+	// 将sendData1，和 sendData2 拼接一起，组成粘包
 	sendData1 = append(sendData1, sendData2...)
 
-	//向服务器端写数据
+	// 向服务器端写数据
 	conn.Write(sendData1)
 
-	//客户端阻塞
+	// 客户端阻塞
 	select {}
 }

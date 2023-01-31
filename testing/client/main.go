@@ -27,12 +27,13 @@ func main() {
 			return
 		}
 
-		if _, err := conn.Write(buf); err != nil {
+		if _, err = conn.Write(buf); err != nil {
 			logger.Error("msg write fail", zap.Error(err))
+			return
 		}
 
 		buf = make([]byte, dp.GetHeadLen())
-		cnt, err := io.ReadFull(conn, buf)
+		_, err = io.ReadFull(conn, buf)
 		if err != nil {
 			fmt.Printf("read head buf error :%s", err)
 			return
@@ -45,7 +46,7 @@ func main() {
 		}
 
 		msgData := make([]byte, head.GetMsgLen())
-		cnt, err = io.ReadFull(conn, msgData)
+		cnt, err := io.ReadFull(conn, msgData)
 		if err != nil {
 			logger.Error("msg data reader fail", zap.Error(err))
 			return

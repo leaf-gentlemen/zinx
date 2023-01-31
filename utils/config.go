@@ -25,6 +25,8 @@ type Configure struct {
 	Version        string         // zinx 版本
 	WorkerPoolSize uint32         // 最新任务池数量
 	WorkerMsgLen   uint32         // 最大任务池数量
+	MsgBuffChanLen uint32         // 待缓存的写管道的长度
+	HedaLen        int
 }
 
 func InitConf(path string) {
@@ -37,6 +39,8 @@ func InitConf(path string) {
 		MaxPackageSize: 4096,
 		WorkerPoolSize: 10,
 		WorkerMsgLen:   20,
+		MsgBuffChanLen: 1024,
+		HedaLen:        8,
 	}
 	reload(conf, path)
 }

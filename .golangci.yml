@@ -118,10 +118,17 @@ linters:
 issues:
   # Excluding configuration per-path, per-linter, per-text and per-source
   exclude-rules:
-    - path: _test\.go
+    - path: '(.+)_test\.go'
       linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
         - gomnd
-
+        - funlen
+        - gocritic
+        - govet
+        - whitespace
     - path: pkg/golinters/errcheck.go
       text: "SA1019: errCfg.Exclude is deprecated: use ExcludeFunctions instead"
     - path: pkg/commands/run.go

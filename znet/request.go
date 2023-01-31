@@ -5,7 +5,6 @@ import "zinx/ziface"
 type Request struct {
 	conn ziface.IConnection
 	msg  ziface.IMessage
-	cnt  int
 }
 
 func (r *Request) GetConnection() ziface.IConnection {

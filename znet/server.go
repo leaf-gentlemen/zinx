@@ -11,32 +11,34 @@ import (
 )
 
 type Server struct {
-	//
-	//  Name
-	//  @Description: 服务器名称
-	//
+	// Name 服务器名称
 	Name string
-
-	//
-	//  IPVersion
-	//  @Description: 服务器绑定的IP版本
-	//
+	// IPVersion 服务器绑定的IP版本
 	IPVersion string
-	//
-	//  Addr
-	//  @Description: 地址
-	//
+	// Addr 地址
 	Addr string
-	//
-	//  Port
-	//  @Description: 端口
-	//
+	// Port 端口
 	Port int
-	//
-	//  Router
-	//  @Description: 路由
-	//
+	// Router 路由
 	Router ziface.IRouter
+	// ConnManager 连接管理器
+	ConnManager ziface.IConnManager
+	// onConnStop 连接关闭前 hook 函数
+	onConnStop func(c ziface.IConnection)
+	// onConnStart  创建连接前 hook 函数
+	onConnStart func(c ziface.IConnection)
+}
+
+func NewServe(name string) ziface.IServer {
+	s := &Server{
+		Name:        name,
+		IPVersion:   "tcp4",
+		Addr:        utils.Interface().Host,
+		Port:        utils.Interface().Port,
+		Router:      NewRouter(),
+		ConnManager: NewConnManager(),
+	}
+	return s
 }
 
 func (s *Server) Start() {
@@ -63,13 +65,31 @@ func (s *Server) Start() {
 			continue
 		}
 
-		delConn := NewConnection(conn, cid, s.Router)
+		if s.GetConnManager().Len() >= utils.Interface().MaxConn {
+			logger.Warn("Connection exceeds online", zap.Int("maxConn", utils.Interface().MaxConn))
+			continue
+		}
+
+		delConn := NewConnection(s, conn, cid, s.Router)
 		go delConn.Start()
 	}
 }
 
+func (s *Server) SetOnConnStart(hookFun func(ziface.IConnection)) {
+	s.onConnStart = hookFun
+}
+
+func (s *Server) SetOnConnStop(hookFun func(ziface.IConnection)) {
+	s.onConnStop = hookFun
+}
+
+func (s *Server) GetConnManager() ziface.IConnManager {
+	return s.ConnManager
+}
+
 func (s *Server) Stop() {
 	// TODO 将一些服务器资源停止，
+	s.ConnManager.Clear()
 }
 
 func (s *Server) Serve() {
@@ -83,13 +103,14 @@ func (s *Server) AddRouter(msgID uint32, r ziface.IHandler) error {
 	return s.Router.AddRoute(msgID, r)
 }
 
-func NewServe(name string) ziface.IServer {
-	s := &Server{
-		Name:      name,
-		IPVersion: "tcp4",
-		Addr:      utils.Interface().Host,
-		Port:      utils.Interface().Port,
-		Router:    NewRouter(),
+func (s *Server) CallOnConnStart(conn ziface.IConnection) {
+	if s.onConnStart != nil {
+		s.onConnStart(conn)
 	}
-	return s
+}
+
+func (s *Server) CallOnConnStop(conn ziface.IConnection) {
+	if s.onConnStop != nil {
+		s.onConnStop(conn)
+	}
 }

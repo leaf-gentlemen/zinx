@@ -35,14 +35,22 @@ type IConnection interface {
 	//  @return net.Addr
 	//
 	GetRemoteAddr() net.Addr
-
 	//
-	// Send
+	// SendMsg
 	//  @Description: 发送客户端数据
 	//  @param buf
 	//  @return error
 	//
-	Send(uint32, []byte) error
+	SendMsg(uint32, []byte) error
+
+	//
+	// SendBuffMsg
+	//  @Description: 添加带缓冲发送消息接口
+	//  @param msgId
+	//  @param data
+	//  @return error
+	//
+	SendBuffMsg(uint32, []byte) error
 }
 
 type HandleFunc func(*net.TCPConn, []byte, int) error

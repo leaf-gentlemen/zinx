@@ -3,7 +3,6 @@ package znet
 import (
 	"fmt"
 	"io"
-	"log"
 	"net"
 	"zinx/utils"
 	"zinx/ziface"
@@ -14,28 +13,37 @@ import (
 )
 
 type Connection struct {
+	// srv 当前连接的 server
+	srv ziface.IServer
 	// Conn 当前连接的socket TCP
-	Conn *net.TCPConn
+	conn *net.TCPConn
 	// ConnID 当前连接ID
-	ConnID uint32
+	connID uint32
 	// isClose 是否关闭
 	isClose bool
 	// handle 绑定的业务方法
 	router ziface.IRouter
-	// ExitChan 通知当前连接已退出
+	// exitChan 通知当前连接已退出
 	exitChan chan bool
-	msgChan  chan []byte
+	// msgChan 写业务消息管道
+	msgChan chan []byte
+	// msgBuffChan 带缓存写业务消息管道
+	msgBuffChan chan []byte
 }
 
-func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Connection {
-	return &Connection{
-		Conn:     conn,
-		ConnID:   connID,
-		isClose:  false,
-		router:   handle,
-		exitChan: make(chan bool),
-		msgChan:  make(chan []byte),
+func NewConnection(srv ziface.IServer, conn *net.TCPConn, connID uint32, handle ziface.IRouter) *Connection {
+	c := &Connection{
+		conn:        conn,
+		connID:      connID,
+		isClose:     false,
+		router:      handle,
+		exitChan:    make(chan bool),
+		msgChan:     make(chan []byte),
+		srv:         srv,
+		msgBuffChan: make(chan []byte, utils.Interface().MsgBuffChanLen),
 	}
+	c.srv.GetConnManager().Add(c)
+	return c
 }
 
 func (c *Connection) Start() {
@@ -44,6 +52,7 @@ func (c *Connection) Start() {
 	// 启动读数据业务
 	go c.StartReader()
 	go c.StartWrite()
+	c.srv.CallOnConnStart(c)
 }
 
 func (c *Connection) Stop() {
@@ -54,39 +63,27 @@ func (c *Connection) Stop() {
 	}
 
 	c.isClose = true
-	if err := c.Conn.Close(); err != nil {
-		log.Printf("err:%s\n", err)
+	if err := c.conn.Close(); err != nil {
+		logger.Error("conn close fail", zap.Error(err))
 	}
+
+	c.srv.CallOnConnStop(c)
 	c.exitChan <- true
+	c.srv.GetConnManager().Remove(c.GetConnID())
 	close(c.exitChan)
 	close(c.msgChan)
 }
 
 func (c *Connection) GetConn() *net.TCPConn {
-	return c.Conn
+	return c.conn
 }
 
 func (c *Connection) GetConnID() uint32 {
-	return c.ConnID
+	return c.connID
 }
 
 func (c *Connection) GetRemoteAddr() net.Addr {
-	return c.Conn.RemoteAddr()
-}
-
-func (c *Connection) Send(msgID uint32, buf []byte) error {
-	if c.isClose {
-		return errors.WithStack(errors.New("conn is clone"))
-	}
-
-	msg := NewMessage(msgID, buf)
-	dp := NewDataPack()
-	bufData, err := dp.Pack(msg)
-	if err != nil {
-		return err
-	}
-	c.msgChan <- bufData
-	return nil
+	return c.conn.RemoteAddr()
 }
 
 func (c *Connection) StartReader() {
@@ -147,8 +144,48 @@ func (c *Connection) StartWrite() {
 				logger.Error("write client msg fail", zap.Error(err))
 				break
 			}
+		case msg, ok := <-c.msgBuffChan:
+			if ok {
+				_, err := c.GetConn().Write(msg)
+				if err != nil {
+					logger.Error("write client msg fail", zap.Error(err))
+					break
+				}
+			} else {
+				logger.Error("msgBuffChan is close")
+				break
+			}
+
 		case <-c.exitChan:
 			return
 		}
 	}
+}
+
+func (c *Connection) SendMsg(msgID uint32, buf []byte) error {
+	if c.isClose {
+		return errors.WithStack(errors.New("conn is clone"))
+	}
+	msg := NewMessage(msgID, buf)
+	dp := NewDataPack()
+	bufData, err := dp.Pack(msg)
+	if err != nil {
+		return err
+	}
+	c.msgChan <- bufData
+	return nil
+}
+
+func (c *Connection) SendBuffMsg(msgID uint32, buf []byte) error {
+	if c.isClose {
+		return errors.WithStack(errors.New("conn is clone"))
+	}
+
+	dp := NewDataPack()
+	bufData, err := dp.Pack(NewMessage(msgID, buf))
+	if err != nil {
+		return err
+	}
+	c.msgBuffChan <- bufData
+	return nil
 }

@@ -16,7 +16,8 @@ func (l *User) Handle(r ziface.IRequest) {
 	logger := utils.Logger
 	conn := r.GetConnection()
 	logger.Debug("client message", zap.String("data", string(r.GetData())))
-	if err := conn.Send(201, []byte("hello word...")); err != nil {
+	var msgID uint32 = 201
+	if err := conn.SendMsg(msgID, []byte("hello word...")); err != nil {
 		logger.Error("send client fail", zap.Error(err))
 	}
 }

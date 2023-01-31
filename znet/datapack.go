@@ -3,7 +3,6 @@ package znet
 import (
 	"bytes"
 	"encoding/binary"
-
 	"github.com/pkg/errors"
 
 	"zinx/ziface"

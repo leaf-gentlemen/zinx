@@ -5,9 +5,8 @@ import (
 	"zinx/utils"
 	"zinx/ziface"
 
-	"go.uber.org/zap"
-
 	"github.com/pkg/errors"
+	"go.uber.org/zap"
 )
 
 type Router struct {
