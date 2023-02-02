@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"github.com/pkg/errors"
 
-	"zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/ziface"
 )
 
 // DataPack

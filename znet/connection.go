@@ -2,11 +2,11 @@ package znet
 
 import (
 	"fmt"
+	"github.com/leaf-gentlemen/zinx/utils"
+	"github.com/leaf-gentlemen/zinx/ziface"
 	"io"
 	"net"
 	"sync"
-	"zinx/utils"
-	"zinx/ziface"
 
 	"github.com/pkg/errors"
 

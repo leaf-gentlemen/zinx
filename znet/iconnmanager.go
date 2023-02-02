@@ -1,8 +1,8 @@
 package znet
 
 import (
+	"github.com/leaf-gentlemen/zinx/ziface"
 	"sync"
-	"zinx/ziface"
 )
 
 type ConnManager struct {

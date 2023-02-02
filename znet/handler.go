@@ -1,6 +1,6 @@
 package znet
 
-import "zinx/ziface"
+import "github.com/leaf-gentlemen/zinx/ziface"
 
 type BaseHandler struct{}
 

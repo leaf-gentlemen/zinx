@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"zinx/testing/service/internal/control"
-	"zinx/utils"
-	"zinx/ziface"
-	"zinx/znet"
+	"github.com/leaf-gentlemen/zinx/testing/service/internal/control"
+	"github.com/leaf-gentlemen/zinx/utils"
+	"github.com/leaf-gentlemen/zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/znet"
 )
 
 // 创建连接的时候执行

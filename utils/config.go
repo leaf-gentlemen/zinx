@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/ziface"
 
 	"github.com/spf13/viper"
 )
@@ -16,13 +16,13 @@ func Interface() *Configure {
 }
 
 type Configure struct {
-	TCPServer      ziface.IServer // zinx 全局的 server 对象
+	TCPServer      ziface.IServer // github.com/leaf-gentlemen/zinx 全局的 server 对象
 	Port           int            // 网关端口号
 	Host           string         // 地址
 	Name           string         // 服务名称
 	MaxConn        int            // 最大连接数
 	MaxPackageSize int            // 最大数据包长度
-	Version        string         // zinx 版本
+	Version        string         // github.com/leaf-gentlemen/zinx 版本
 	WorkerPoolSize uint32         // 最新任务池数量
 	WorkerMsgLen   uint32         // 最大任务池数量
 	MsgBuffChanLen uint32         // 待缓存的写管道的长度
@@ -31,7 +31,7 @@ type Configure struct {
 
 func InitConf(path string) {
 	conf = &Configure{
-		Name:           "[Zinx v0.4]",
+		Name:           "[github.com/leaf-gentlemen/zinx v0.4]",
 		Version:        "v0.4",
 		Port:           8081,
 		Host:           "0.0.0.0",

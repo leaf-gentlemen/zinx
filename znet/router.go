@@ -2,8 +2,8 @@ package znet
 
 import (
 	"fmt"
-	"zinx/utils"
-	"zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/utils"
+	"github.com/leaf-gentlemen/zinx/ziface"
 
 	"github.com/pkg/errors"
 	"go.uber.org/zap"

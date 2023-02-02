@@ -2,9 +2,9 @@ package znet
 
 import (
 	"fmt"
+	"github.com/leaf-gentlemen/zinx/utils"
+	"github.com/leaf-gentlemen/zinx/ziface"
 	"net"
-	"zinx/utils"
-	"zinx/ziface"
 
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
@@ -56,7 +56,7 @@ func (s *Server) Start() {
 		return
 	}
 	var cid uint32 = 1
-	logger.Debug(fmt.Sprintf("start Zinx server succeed  %s server listening...", s.Name))
+	logger.Debug(fmt.Sprintf("start github.com/leaf-gentlemen/zinx server succeed  %s server listening...", s.Name))
 	s.Router.StartWorkerPool()
 	for {
 		conn, err := listen.AcceptTCP()

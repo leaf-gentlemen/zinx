@@ -1,9 +1,9 @@
 package control
 
 import (
-	"zinx/utils"
-	"zinx/ziface"
-	"zinx/znet"
+	"github.com/leaf-gentlemen/zinx/utils"
+	"github.com/leaf-gentlemen/zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/znet"
 
 	"go.uber.org/zap"
 )

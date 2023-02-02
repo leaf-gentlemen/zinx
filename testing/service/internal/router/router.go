@@ -1,7 +1,7 @@
 package router
 
 import (
-	"zinx/ziface"
+	"github.com/leaf-gentlemen/zinx/ziface"
 )
 
 func AddRouter(s ziface.IServer) {

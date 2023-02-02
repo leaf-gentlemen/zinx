@@ -1,4 +1,4 @@
-module zinx
+module github.com/leaf-gentlemen/zinx
 
 go 1.19
 
