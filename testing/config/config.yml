@@ -1,7 +1,0 @@
-Port: 8082
-Host: 0.0.0.0
-Name: "[github.com/leaf-gentlemen/zinx v0.4]"
-MaxConn: 1000
-MaxPackageSize: 4096
-Version: v0.4
-

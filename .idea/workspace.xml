@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="2e533293-5ab2-4629-b4a3-ab75e09486d0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/client/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/config/config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/service/internal/control/login.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/service/internal/control/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/service/internal/router/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/service/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/datapack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/iconnmanager.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/iconnmanager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/znet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/znet/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +31,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///opt/homebrew/Cellar/go/1.19.5/libexec" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -77,7 +87,7 @@
     "configurable.GoLibrariesConfigurable.is.expanded": "true",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/yesheng/zinx",
+    "last_opened_file_path": "/home/yesheng/project/src/zinx",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "settings.editor.selected.configurable": "go.sdk"

@@ -3,9 +3,9 @@ package znet
 import (
 	"bytes"
 	"encoding/binary"
-	"github.com/pkg/errors"
 
 	"github.com/leaf-gentlemen/zinx/ziface"
+	"github.com/pkg/errors"
 )
 
 // DataPack
@@ -18,7 +18,8 @@ func NewDataPack() ziface.IDataPack {
 }
 
 func (d *DataPack) GetHeadLen() int {
-	return 8
+	headLen := 8
+	return headLen
 }
 
 func (d *DataPack) Pack(msg ziface.IMessage) ([]byte, error) {
